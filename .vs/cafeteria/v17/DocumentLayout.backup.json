@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|c:\\users\\danie\\downloads\\cafeteria\\utilidades\\validacoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:utilidades\\validacoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|c:\\users\\danie\\downloads\\cafeteria\\dao\\funcionariodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:dao\\funcionariodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|c:\\users\\danie\\downloads\\cafeteria\\utilidades\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:utilidades\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|c:\\users\\danie\\downloads\\cafeteria\\mapeamento\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:mapeamento\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|c:\\users\\danie\\downloads\\cafeteria\\utilidades\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73F95D16-1F0C-45AD-B692-316F75617D23}|cafeteria.csproj|solutionrelative:utilidades\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Validacoes.cs",
+              "DocumentMoniker": "C:\\Users\\danie\\Downloads\\cafeteria\\Utilidades\\Validacoes.cs",
+              "RelativeDocumentMoniker": "Utilidades\\Validacoes.cs",
+              "ToolTip": "C:\\Users\\danie\\Downloads\\cafeteria\\Utilidades\\Validacoes.cs",
+              "RelativeToolTip": "Utilidades\\Validacoes.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowFcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T18:43:50.885Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -36,20 +53,20 @@
               "RelativeDocumentMoniker": "Mapeamento\\Funcionario.cs",
               "ToolTip": "C:\\Users\\danie\\Downloads\\cafeteria\\Mapeamento\\Funcionario.cs",
               "RelativeToolTip": "Mapeamento\\Funcionario.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA0AAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T22:07:52.725Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FuncionarioDAO.cs",
               "DocumentMoniker": "C:\\Users\\danie\\Downloads\\cafeteria\\DAO\\FuncionarioDAO.cs",
               "RelativeDocumentMoniker": "DAO\\FuncionarioDAO.cs",
               "ToolTip": "C:\\Users\\danie\\Downloads\\cafeteria\\DAO\\FuncionarioDAO.cs",
               "RelativeToolTip": "DAO\\FuncionarioDAO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAkwH0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-16T02:12:06.454Z",
               "EditorCaption": ""
@@ -62,14 +79,14 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\danie\\Downloads\\cafeteria\\Program.cs*",
               "RelativeToolTip": "Program.cs*",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACkAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T20:34:08.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Conexao.cs",
               "DocumentMoniker": "C:\\Users\\danie\\Downloads\\cafeteria\\Utilidades\\Conexao.cs",
               "RelativeDocumentMoniker": "Utilidades\\Conexao.cs",

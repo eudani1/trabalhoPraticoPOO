@@ -38,3 +38,4 @@ C:\Users\danie\Downloads\cafeteria\obj\Debug\net8.0\refint\cafeteria.dll
 C:\Users\danie\Downloads\cafeteria\obj\Debug\net8.0\cafeteria.pdb
 C:\Users\danie\Downloads\cafeteria\obj\Debug\net8.0\cafeteria.genruntimeconfig.cache
 C:\Users\danie\Downloads\cafeteria\obj\Debug\net8.0\ref\cafeteria.dll
+C:\Users\danie\Downloads\cafeteria\obj\Debug\net8.0\cafeteria.sourcelink.json

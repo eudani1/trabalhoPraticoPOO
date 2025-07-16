@@ -1,20 +1,20 @@
 ﻿// See //https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
-using System;
-using System.Collections.Concurrent;
+
 using cafeteria.DAO;
 using cafeteria.Mapeamento;
 using cafeteria.Utilidades;
 using ZstdSharp.Unsafe;
 using System.Linq;
 
-class program
+class Program
 {
     static void Main(string[] args)
     {
         Conexao.Conectar();
 
         int op = 0;
+        string menuInput;
 
         do
         {
@@ -24,7 +24,15 @@ class program
             Console.WriteLine("3 - Deletar Funcionário");
             Console.WriteLine("4 - Listar Todos os Funcionário");
             Console.WriteLine("5 - SAIR");
-            op = Convert.ToInt32(Console.ReadLine());
+            //op = Convert.ToInt32(Console.ReadLine());
+            menuInput = Console.ReadLine();
+
+            if (!int.TryParse(menuInput, out op) || op < 1 || op > 5)
+            {
+                Console.WriteLine("Opção inválida. Por favor, digite um número de 1 a 5.");
+                // Continue to the next iteration of the do-while loop
+                continue;
+            }
 
             switch (op)
             {
@@ -33,26 +41,108 @@ class program
                         try
                         {
                             Funcionario f = new Funcionario();
-                            Console.WriteLine("CPF: ");
-                            f.CPF = Console.ReadLine();
 
-                            Console.WriteLine("Nome: ");
-                            f.nome = Console.ReadLine();
+                            
+                            do
+                            {
+                                Console.WriteLine("CPF: ");
+                                string entradaCPF = Console.ReadLine();
 
-                            Console.WriteLine("Data de Contratação: (yyyy-MM-dd HH:mm:ss)");
-                            f.dataContratacao = DateTime.Parse(Console.ReadLine());
+                                if (!Validacoes.ValidarCPf(entradaCPF))
+                                {
+                                    Console.WriteLine("CPF inválido. Por favor, digite novamente.");
+                                }
+                                else
+                                {
+                                    f.CPF = Validacoes.FormatarCPF(entradaCPF);
+                                    break;
+                                }
+                            }while (true);
 
-                            Console.WriteLine("Salário: ");
-                            f.salario = Convert.ToDouble(Console.ReadLine());
+                            string nomeDigitado;
+                            do
+                            {
+                                Console.WriteLine("Nome: ");
+                                nomeDigitado = Console.ReadLine();
+                                if (string.IsNullOrEmpty(nomeDigitado))
+                                {
+                                    Console.WriteLine("Nome não pode ser vazio. Digite novamente.");
+                                }
+                            } while (string.IsNullOrWhiteSpace(nomeDigitado));
+                            
+                            f.nome = Validacoes.CapitalizarNome(nomeDigitado);
 
-                            Console.WriteLine("Telefone: ");
-                            f.telefone = Console.ReadLine();
 
-                            Console.WriteLine("Email: ");
-                            f.email = Console.ReadLine();
+                            DateTime dataContratacao;
+                            do
+                            {
+                                Console.WriteLine("Data de Contratação (yyyy-MM-dd HH:mm:ss):");
+                                string entradaData = Console.ReadLine();
 
-                            Console.WriteLine("Sexo: ");
-                            f.sexo = Console.ReadLine();
+                                if (!DateTime.TryParse(entradaData, out dataContratacao))
+                                {
+                                    Console.WriteLine("Data inválida. Digite novamente.");
+                                }
+                            } while (dataContratacao == default(DateTime));
+
+                            f.dataContratacao = dataContratacao;
+
+
+                            double salario;
+                            do
+                            {
+                                Console.Write("Salário: ");
+                                if (!double.TryParse(Console.ReadLine(), out salario) || salario <= 0)
+                                {
+                                    Console.WriteLine("Valor inválido. O salário deve ser um número maior que 0.");
+                                }
+                            } while (salario <= 0);
+
+                            f.salario = salario;
+
+
+                            do
+                            {
+                                Console.WriteLine("Telefone: (somente números ou com máscara) adicione o DDD!: ");
+                                string telefoneInput = Console.ReadLine();
+
+                                if (!Validacoes.ValidarTelefone(telefoneInput))
+                                {
+                                    Console.WriteLine("Telefone inválido. Digite novamente.");
+                                }
+                                else
+                                {
+                                    f.telefone = Validacoes.FormatarTelefone(telefoneInput);
+                                    break;
+                                }
+                            } while(true);
+
+
+
+                            string email;
+                            do
+                            {
+                                Console.WriteLine("Email: ");
+                                email = Console.ReadLine();
+
+                                if (string.IsNullOrWhiteSpace(email) || !Validacoes.ValidarEmail(email))
+                                {
+                                    Console.WriteLine("Email inválido. Digite novamente:");
+                                }
+                            } while (string.IsNullOrWhiteSpace(email) || !Validacoes.ValidarEmail(email));
+                            f.email = email;
+
+
+                            Console.WriteLine("Sexo (Masculino/Feminino): ");
+                            string sexo = Console.ReadLine().Trim();
+
+                            while (!Validacoes.ValidarSexoPorExtenso(sexo))
+                            {
+                                Console.WriteLine("Sexo inválido. Digite apenas 'Masculino' ou 'Feminino':");
+                                sexo = Console.ReadLine().Trim();
+                            }
+                            f.sexo = char.ToUpper(sexo[0]) + sexo.Substring(1).ToLower();
+
 
                             FuncionarioDAO fDao = new FuncionarioDAO();
                             fDao.Cadastrar(f);
@@ -70,11 +160,11 @@ class program
                         {
                             Funcionario f = new Funcionario();
 
-                            Console.WriteLine("Informe o ID do funcionário que deseja atualizar");
+                            Console.WriteLine("Informe o ID do funcionário que deseja atualizar: ");
                             f.idFuncionario = Convert.ToInt32(Console.ReadLine());
 
                             FuncionarioDAO fDao = new FuncionarioDAO();
-                            string continuar;
+                            string continuar = "S";
 
                             do
                             {
@@ -87,15 +177,93 @@ class program
                                     Console.WriteLine("5 - Telefone");
                                     Console.WriteLine("6 - Email");
                                     Console.WriteLine("7 - Sexo");
-                                     string input = Console.ReadLine();
-                                    int opc = Convert.ToInt32(Console.ReadLine());
+
+                                    string input = Console.ReadLine();
+                                    int opc;
                                 
                                 if (!int.TryParse(input, out opc) || opc <1|| opc> 7){
-                                    Console.WriteLine( "opcao invalida");
+                                    Console.WriteLine( "opcao invalida. Tente novamente.");
+                                    continue;
                                 }
- 
-                                Console.WriteLine("Digite o novo valor para o campo: ");
-                                string novoValor = Console.ReadLine();
+
+                                string novoValor;
+
+                                do
+                                {
+                                    Console.WriteLine("Digite o novo valor para o campo: ");
+                                    novoValor = Console.ReadLine();
+
+                                    if (string.IsNullOrWhiteSpace(novoValor))
+                                    {
+                                        Console.WriteLine("O valor não pode ser vazio. Tente novamente.");
+                                        continue;
+                                    }
+
+                                    bool valido = true;
+
+                                    switch (opc)
+                                    {
+                                        case 1:
+                                            {
+                                                if (!Validacoes.ValidarCPf(novoValor))
+                                                {
+                                                    Console.WriteLine("Cpf inválido. Tente novamente.");
+                                                    valido = false;
+                                                }
+                                            } break;
+                                        case 2:
+                                            {
+                                                novoValor = Validacoes.CapitalizarNome(novoValor);
+                                            } break;
+                                        case 3:
+                                            {
+                                                DateTime data;
+
+                                                if (!DateTime.TryParse(novoValor, out data))
+                                                {
+                                                    Console.WriteLine("Data inválida. Tente novamente. ");
+                                                    valido = false;
+                                                }
+                                            } break;
+                                        case 4:
+                                            {
+                                                double salario;
+                                                if (!double.TryParse(novoValor, out salario) || salario <= 0){
+                                                    Console.WriteLine("Salário inválido. Temte novamente.");
+                                                    valido = false;
+                                                }
+                                            } break;
+                                        case 5:
+                                            {
+                                                if (!Validacoes.ValidarTelefone(novoValor))
+                                                {
+                                                    Console.WriteLine("Telefone inválido. Tente novamente (somente números ou com máscara) adicione o DDD!");
+                                                    valido = false;
+                                                }
+                                            } break;
+                                        case 6:
+                                            {
+                                                if (!Validacoes.ValidarEmail(novoValor))
+                                                {
+                                                    Console.WriteLine("Email inválido. Tente novamente.");
+                                                    valido = false;
+                                                }
+                                            } break;
+                                        case 7:
+                                            {
+                                                if (!Validacoes.ValidarSexoPorExtenso(novoValor))
+                                                {
+                                                    Console.WriteLine("Sexo inválido. Digite apenas Masculino ou Feminino");
+                                                    valido = false;
+                                                }
+                                                else
+                                                {
+                                                    novoValor = char.ToUpper(novoValor[0]) + novoValor.Substring(1).ToLower();
+                                                }
+                                            } break;
+                                    } if (valido) break;
+
+                                } while (true);
 
                                 fDao.Atualizar(f, opc, novoValor);
 
@@ -108,7 +276,6 @@ class program
                         {
                             Console.WriteLine("Erro ao cadastrar: " + ex.Message);
                         }
-
                     }
                     break;
                 case 3:
@@ -117,7 +284,7 @@ class program
                         {
                             Funcionario f = new Funcionario();
 
-                            Console.WriteLine("Diigte o ID do funciónário que deseja deletar: ");
+                            Console.WriteLine("Digite o ID do funciónário que deseja deletar: ");
                             f.idFuncionario = Convert.ToInt32(Console.ReadLine());
 
                             FuncionarioDAO fDao = new FuncionarioDAO();
@@ -135,7 +302,7 @@ class program
                     {
                         try
                         {
-                            //Funcionario f = new Funcionario();
+                            
                             FuncionarioDAO fDao = new FuncionarioDAO();
                             List<Funcionario> funcionarios = fDao.BuscarTodos();
 
@@ -170,7 +337,7 @@ class program
                     {
                         Console.WriteLine("Opção inválida."); 
                     }break;
-            }
+            } 
         } while (op != 5);
     }
 }
